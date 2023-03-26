@@ -42,7 +42,7 @@ export default function Home({ host }) {
   }
   return (
     <div className={styles.container}>
-      <h1 style={{ padding: "2%", margin: "2%" }}>LAB Week 9</h1>
+      <h1 style={{}}>LAB Week 9</h1>
       <div style={{ display: "column", justifyContent: "center", alignItems: "center" }}>
         <div style={{
           display: "column"
@@ -75,7 +75,7 @@ export default function Home({ host }) {
         </div>
         <button style={{
 
-          padding: 2, backgroundColor: "cyan"
+          cursor: pointer, padding: 2, backgroundColor: "cyan"
         }} onClick={() => submitData()}>Submit</button>
       </div>
       {image && (
@@ -91,8 +91,8 @@ export default function Home({ host }) {
       {
         data && (
           <div>
-            <div style={{ display: "flex" }}>
-              Name Surname :{data.name + "  " + data.surname}
+            <div>
+              {data.name + "       " + data.surname}
             </div>
 
             {
@@ -104,7 +104,15 @@ export default function Home({ host }) {
             }
           </div>
         )}
-
+      {
+        loading && (
+          <div style={{ position: "absolute", width: "100%", height: "100%", backgroundColor: "rgba(0,0,0, 0.5)", top: 0, left: 0 }}>
+            <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", fontSize: "50px" }}>
+              Loading
+            </div>
+          </div>
+        )
+      }
     </div>
   )
 }
