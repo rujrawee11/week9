@@ -11,7 +11,7 @@ export default function Home({ host }) {
   const [surname, setSurname] = useState('')
   const [numbers, setNum] = useState([])
   const [image, setImage] = useState(null)
-  const [Image2, setImage2] = useState(null)
+  const [resImage, setResImage] = useState(null)
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
   const chooseFiles = (event) => {
@@ -33,7 +33,7 @@ export default function Home({ host }) {
         }
       })
       setData(result.data)
-      setImage2(result.data.processed_image)
+      setResImage(result.data.processed_image)
       setLoading(false)
     }
     catch (e) {
@@ -79,29 +79,30 @@ export default function Home({ host }) {
         }} onClick={() => submitData()}>Submit</button>
       </div>
       {image && (
-        <div style={{ display: "flex" }}>
-          <Image id='image' width={400} height={200} src={image} alt='pic1' style={{ objectFit: 'contain' }} />
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <Image id='image' width={600} height={400} src={image} alt='eiei' style={{ objectFit: 'contain' }} />
         </div>
       )}
-      <div style={{ display: "flex" }}>
-        {Image2 && (
-          <Image id='image2' width={400} height={200} src={Image2} alt='pic2' style={{ objectFit: 'contain' }} />
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+        {resImage && (
+          <Image id='image2' width={600} height={400} src={resImage} alt='hello' style={{ objectFit: 'contain' }} />
         )}
       </div>
       {
         data && (
           <div>
             <div>
-              {data.name + "       " + data.surname}
+              {data.name + " " + data.surname}
             </div>
-
-            {
-              data.numbers.map((item, index) => (
-                <text key={index}>
-                  {item}
-                </text>
-              ))
-            }
+            <ul>
+              {
+                data.numbers.map((item, index) => (
+                  <li key={index}>
+                    {item}
+                  </li>
+                ))
+              }
+            </ul>
           </div>
         )}
       {
