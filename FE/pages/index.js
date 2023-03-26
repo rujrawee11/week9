@@ -9,9 +9,9 @@ export default function Home({ host }) {
   const hostname = host.substring(0, host.indexOf(":"))
   const [name, setName] = useState('')
   const [surname, setSurname] = useState('')
-  const [numbers, setNum] = useState([])
+  const [num, setNum] = useState([])
   const [image, setImage] = useState(null)
-  const [resImage, setResImage] = useState(null)
+  const [Images, setImages] = useState(null)
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
   const chooseFiles = (event) => {
@@ -24,16 +24,16 @@ export default function Home({ host }) {
     }
   }
   const submitData = async () => {
-    let sendNumber = numbers.split(" ")
+    let sendNumber = num.split(" ")
     try {
       setLoading(true)
-      const result = await axios.post(`http://${hostname}:8088/process-image`, { image: image, name: name, surname: surname, numbers: sendNumber }, {
+      const result = await axios.post(`http://${hostname}:8088/process-image`, { image: image, name: name, surname: surname, num: sendNumber }, {
         headers: {
           'Content-Type': 'application/json'
         }
       })
       setData(result.data)
-      setResImage(result.data.processed_image)
+      setImages(result.data.processed_image)
       setLoading(false)
     }
     catch (e) {
@@ -42,7 +42,7 @@ export default function Home({ host }) {
   }
   return (
     <div className={styles.container}>
-      <h1 style={{}}>LAB Week 9</h1>
+      <h1 style={{ padding: "2%" }}>LAB Week 9</h1>
       <div style={{ display: "column", justifyContent: "center", alignItems: "center" }}>
         <div style={{
           display: "column"
@@ -73,19 +73,16 @@ export default function Home({ host }) {
           <div>Student ID: :</div>
           <input type={"text"} onChange={(e) => setNum(e.target.value)} placeholder={"Enter Student ID"} />
         </div>
-        <button style={{
-
-          cursor: pointer, padding: 2, backgroundColor: "cyan"
-        }} onClick={() => submitData()}>Submit</button>
+        <button onClick={() => submitData()}>Submit</button>
       </div>
       {image && (
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-          <Image id='image' width={400} height={200} src={image} alt='eiei' style={{ objectFit: 'contain' }} />
+          <Image id='image' width={600} height={400} src={image} alt='eiei' style={{ objectFit: 'contain' }} />
         </div>
       )}
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-        {resImage && (
-          <Image id='image2' width={400} height={200} src={resImage} alt='hello' style={{ objectFit: 'contain' }} />
+        {Images && (
+          <Image id='image2' width={600} height={400} src={Images} alt='hello' style={{ objectFit: 'contain' }} />
         )}
       </div>
       {
@@ -96,7 +93,7 @@ export default function Home({ host }) {
             </div>
             <ul>
               {
-                data.numbers.map((item, index) => (
+                data.num.map((item, index) => (
                   <li key={index}>
                     {item}
                   </li>
