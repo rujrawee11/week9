@@ -94,7 +94,7 @@ export default function Home({ host }) {
             <div style={{ display: "flex" }}>
               Name Surname :{data.name + "  " + data.surname}
             </div>
-            <text>Student Id</text>
+
             {
               data.numbers.map((item, index) => (
                 <text key={index}>
