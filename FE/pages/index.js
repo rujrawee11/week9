@@ -75,7 +75,7 @@ export default function Home({ host }) {
         </div>
         <button style={{
 
-          cursor: pointer, padding: 2, backgroundColor: "cyan"
+          padding: 2, backgroundColor: "cyan"
         }} onClick={() => submitData()}>Submit</button>
       </div>
       {image && (
