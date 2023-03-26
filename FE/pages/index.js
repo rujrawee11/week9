@@ -11,7 +11,7 @@ export default function Home({ host }) {
   const [surname, setSurname] = useState('')
   const [numbers, setNum] = useState([])
   const [image, setImage] = useState(null)
-  const [resImage, setResImage] = useState(null)
+  const [Image2, setImage2] = useState(null)
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
   const chooseFiles = (event) => {
@@ -33,7 +33,7 @@ export default function Home({ host }) {
         }
       })
       setData(result.data)
-      setResImage(result.data.processed_image)
+      setImage2(result.data.processed_image)
       setLoading(false)
     }
     catch (e) {
@@ -42,7 +42,7 @@ export default function Home({ host }) {
   }
   return (
     <div className={styles.container}>
-      <h1 style={{}}>LAB Week 9</h1>
+      <h1 style={{ padding: "2%", margin: "2%" }}>LAB Week 9</h1>
       <div style={{ display: "column", justifyContent: "center", alignItems: "center" }}>
         <div style={{
           display: "column"
@@ -73,44 +73,38 @@ export default function Home({ host }) {
           <div>Student ID: :</div>
           <input type={"text"} onChange={(e) => setNum(e.target.value)} placeholder={"Enter Student ID"} />
         </div>
-        <button onClick={() => submitData()}>Submit</button>
+        <button style={{
+
+          cursor: pointer, padding: 2, backgroundColor: "cyan"
+        }} onClick={() => submitData()}>Submit</button>
       </div>
       {image && (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-          <Image id='image' width={600} height={400} src={image} alt='eiei' style={{ objectFit: 'contain' }} />
+        <div style={{ display: "flex" }}>
+          <Image id='image' width={400} height={200} src={image} alt='pic1' style={{ objectFit: 'contain' }} />
         </div>
       )}
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-        {resImage && (
-          <Image id='image2' width={600} height={400} src={resImage} alt='hello' style={{ objectFit: 'contain' }} />
+      <div style={{ display: "flex" }}>
+        {Image2 && (
+          <Image id='image2' width={400} height={200} src={Image2} alt='pic2' style={{ objectFit: 'contain' }} />
         )}
       </div>
       {
         data && (
           <div>
-            <div>
-              {data.name + " " + data.surname}
+            <div style={{ display: "flex" }}>
+              Name Surname :{data.name + "  " + data.surname}
             </div>
-            <ul>
-              {
-                data.numbers.map((item, index) => (
-                  <li key={index}>
-                    {item}
-                  </li>
-                ))
-              }
-            </ul>
+            <text>Student Id</text>
+            {
+              data.numbers.map((item, index) => (
+                <text key={index}>
+                  {item}
+                </text>
+              ))
+            }
           </div>
         )}
-      {
-        loading && (
-          <div style={{ position: "absolute", width: "100%", height: "100%", backgroundColor: "rgba(0,0,0, 0.5)", top: 0, left: 0 }}>
-            <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", fontSize: "50px" }}>
-              Loading
-            </div>
-          </div>
-        )
-      }
+
     </div>
   )
 }
