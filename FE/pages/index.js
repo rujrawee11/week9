@@ -80,12 +80,12 @@ export default function Home({ host }) {
       </div>
       {image && (
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-          <Image id='image' width={600} height={400} src={image} alt='eiei' style={{ objectFit: 'contain' }} />
+          <Image id='image' width={400} height={200} src={image} alt='eiei' style={{ objectFit: 'contain' }} />
         </div>
       )}
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
         {resImage && (
-          <Image id='image2' width={600} height={400} src={resImage} alt='hello' style={{ objectFit: 'contain' }} />
+          <Image id='image2' width={400} height={200} src={resImage} alt='hello' style={{ objectFit: 'contain' }} />
         )}
       </div>
       {
