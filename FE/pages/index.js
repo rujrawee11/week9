@@ -9,12 +9,12 @@ export default function Home({ host }) {
   const hostname = host.substring(0, host.indexOf(":"))
   const [name, setName] = useState('')
   const [surname, setSurname] = useState('')
-  const [numbers, setNumbers] = useState([])
+  const [numbers, setNum] = useState([])
   const [image, setImage] = useState(null)
   const [resImage, setResImage] = useState(null)
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
-  const handleChange = (event) => {
+  const chooseFiles = (event) => {
     let input = document.getElementById('input')
     var fReader = new FileReader()
     fReader.readAsDataURL(input.files[0])
@@ -23,7 +23,7 @@ export default function Home({ host }) {
       setImage(e.target.result)
     }
   }
-  const sendImage = async () => {
+  const submitData = async () => {
     let sendNumber = numbers.split(" ")
     try {
       setLoading(true)
@@ -43,12 +43,37 @@ export default function Home({ host }) {
   return (
     <div className={styles.container}>
       <h1 style={{}}>LAB Week 9</h1>
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-        <input id='input' type='file' onChange={() => handleChange()} />
-        <input type={"text"} onChange={(e) => setName(e.target.value)} placeholder={"input name"} />
-        <input type={"text"} onChange={(e) => setSurname(e.target.value)} placeholder={"input surname"} />
-        <input type={"text"} onChange={(e) => setNumbers(e.target.value)} placeholder={"input number (1 2)"} />
-        <button onClick={() => sendImage()}>Send</button>
+      <div style={{ display: "column", justifyContent: "center", alignItems: "center" }}>
+        <div style={{
+          display: "column"
+        }}>
+
+          <div>Choose File :</div>
+          <input id='input' type='file' onChange={() => chooseFiles()} />
+        </div>
+        <div style={{
+          display: "column"
+        }}>
+
+          <div>Name :</div>
+          <input type={"text"} onChange={(e) => setName(e.target.value)} placeholder={"Enter Name"} />
+
+        </div>
+        <div style={{
+          display: "column"
+        }}>
+
+          <div>Surname :</div>
+          <input type={"text"} onChange={(e) => setSurname(e.target.value)} placeholder={"Enter Surname"} />
+        </div>
+        <div style={{
+          display: "column"
+        }}>
+
+          <div>Student ID: :</div>
+          <input type={"text"} onChange={(e) => setNum(e.target.value)} placeholder={"Enter Student ID"} />
+        </div>
+        <button onClick={() => submitData()}>Submit</button>
       </div>
       {image && (
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
