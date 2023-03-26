@@ -42,7 +42,7 @@ export default function Home({ host }) {
   }
   return (
     <div className={styles.container}>
-      <h1 style={{ textAlign: "center", color: "red" }}></h1>
+      <h1 style={{}}>LAB Week 9</h1>
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
         <input id='input' type='file' onChange={() => handleChange()} />
         <input type={"text"} onChange={(e) => setName(e.target.value)} placeholder={"input name"} />
